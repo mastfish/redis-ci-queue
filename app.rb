@@ -1,6 +1,7 @@
 require 'sinatra'
 require "redis"
 require 'pry'
+require 'json'
 
 post '/ci' do
   uri = URI.parse(ENV["REDISTOGO_URL"])
