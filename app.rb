@@ -8,4 +8,5 @@ post '/ci' do
   redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
   data = {this: true}
   redis.publish 'orchestra:builds', data.to_json
+  "data published"
 end
