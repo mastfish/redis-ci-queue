@@ -2,9 +2,9 @@ require 'sinatra'
 require "redis"
 require 'pry'
 
-get '/hi' do
+post '/ci' do
   uri = URI.parse(ENV["REDISTOGO_URL"])
-  REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
-  REDIS.set("foo", "bar")
-  REDIS.get("foo")
+  redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+  data = {this: true}
+  redis.publish 'orchestra:builds', data.to_json
 end
